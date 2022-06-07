@@ -11,11 +11,11 @@ import { UsersService } from './users.service';
   imports: [
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: 'localhost',
+      host: 'us-cdbr-east-05.cleardb.net',
       port: 3306,
-      username: 'root',
-      password: 'bobowna123',
-      database: 'users',
+      username: 'bb79d3af9866fc',
+      password: '9ce1de37',
+      database: 'heroku_e96ad73dc3fc9ca',
       autoLoadModels: true, //reconhece automaticamente os modelos do projeto (SequelizeModule.forFeature([modelos]))
       synchronize: true,    //quando subir a aplicação, importa automaticamente os modulos(em forFeature) e sincroniza com o banco de dados
     }),
@@ -25,3 +25,4 @@ import { UsersService } from './users.service';
   providers: [AppService, UsersService],
 })
 export class AppModule {}
+//mysql://bb79d3af9866fc:9ce1de37@us-cdbr-east-05.cleardb.net/heroku_e96ad73dc3fc9ca?reconnect=true
