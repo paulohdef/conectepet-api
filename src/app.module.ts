@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Sequelize } from 'sequelize-typescript';
 import { AppController } from './app.controller';
@@ -10,13 +9,12 @@ import { UsersService } from './users.service';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
     SequelizeModule.forRoot({
       dialect: 'mysql',
       host: 'localhost',
       port: 3306,
-      username: process.env.USERNAME_DB,
-      password: process.env.PASSWORD_DB,
+      username: 'root',
+      password: 'bobowna123',
       database: 'users',
       autoLoadModels: true, //reconhece automaticamente os modelos do projeto (SequelizeModule.forFeature([modelos]))
       synchronize: true,    //quando subir a aplicação, importa automaticamente os modulos(em forFeature) e sincroniza com o banco de dados
