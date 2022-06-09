@@ -4,6 +4,14 @@ import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
 @Table
 export class Users extends Model<Users> {
+
+  @Column({
+    type: DataType.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+    allowNull: false
+  })
+  id: number;
   @Column({
     type: DataType.STRING(60),
     allowNull: false,
