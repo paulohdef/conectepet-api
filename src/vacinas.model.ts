@@ -3,7 +3,7 @@ import { Column, DataType, Model, Table } from 'sequelize-typescript';
 //extender da classe model faz ganhar automaticamente a coluna id
 
 @Table
-export class Users extends Model<Users> {
+export class Vacinas extends Model<Vacinas> {
 
   @Column({
     type: DataType.STRING(60),
@@ -15,29 +15,23 @@ export class Users extends Model<Users> {
     type: DataType.STRING(60),
     allowNull: false,
   })
-  email: string;
+  dataInicio: string;
 
   @Column({
     type: DataType.STRING(60),
     allowNull: false,
   })
-  celular: string;
+  dataFim: string;
 
   @Column({
     type: DataType.STRING(60),
     allowNull: false,
   })
-  dataNascimento: string;
+  fornecedor: string;
 
   @Column({
     type: DataType.STRING(60),
     allowNull: false,
   })
-  cep: string;
-
-  @Column({
-    type: DataType.STRING(60),
-    allowNull: false,
-  })
-  password: string;
+  atendeGenero: string;
 }

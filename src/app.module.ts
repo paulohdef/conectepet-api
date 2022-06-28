@@ -6,6 +6,9 @@ import { AppService } from './app.service';
 import { UsersController } from './users.controller';
 import { Users } from './users.model';
 import { UsersService } from './users.service';
+import { VacinasController } from './vacinas.controller';
+import { Vacinas } from './vacinas.model';
+import { VacinasService } from './vacinas.service';
 
 @Module({
   imports: [
@@ -29,10 +32,10 @@ import { UsersService } from './users.service';
     //   autoLoadModels: true, //reconhece automaticamente os modelos do projeto (SequelizeModule.forFeature([modelos]))
     //   synchronize: true,    //quando subir a aplicação, importa automaticamente os modulos(em forFeature) e sincroniza com o banco de dados
     // }),
-    SequelizeModule.forFeature([Users]),
+    SequelizeModule.forFeature([Users, Vacinas]),
   ],
-  controllers: [AppController, UsersController],
-  providers: [AppService, UsersService],
+  controllers: [AppController, UsersController, VacinasController],
+  providers: [AppService, UsersService, VacinasService],
 })
 export class AppModule {}
 //mysql://bb79d3af9866fc:9ce1de37@us-cdbr-east-05.cleardb.net/heroku_e96ad73dc3fc9ca?reconnect=true
