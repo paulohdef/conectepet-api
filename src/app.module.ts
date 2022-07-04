@@ -3,6 +3,11 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { Sequelize } from 'sequelize-typescript';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { PetsController } from './pets.controller';
+import { Pets } from './pets.model';
+import { PetsService } from './pets.service';
+import { PetsUsers } from './petsUsers.model';
+import { PetsUsersService } from './petsUsers.service';
 import { UsersController } from './users.controller';
 import { Users } from './users.model';
 import { UsersService } from './users.service';
@@ -20,7 +25,7 @@ import { VacinasService } from './vacinas.service';
       password: '9ce1de37',
       database: 'heroku_e96ad73dc3fc9ca',
       autoLoadModels: true, //reconhece automaticamente os modelos do projeto (SequelizeModule.forFeature([modelos]))
-      synchronize: true,    //quando subir a aplicação, importa automaticamente os modulos(em forFeature) e sincroniza com o banco de dados
+      synchronize: true, //quando subir a aplicação, importa automaticamente os modulos(em forFeature) e sincroniza com o banco de dados
     }),
     // SequelizeModule.forRoot({
     //   dialect: 'mysql',
@@ -32,10 +37,21 @@ import { VacinasService } from './vacinas.service';
     //   autoLoadModels: true, //reconhece automaticamente os modelos do projeto (SequelizeModule.forFeature([modelos]))
     //   synchronize: true,    //quando subir a aplicação, importa automaticamente os modulos(em forFeature) e sincroniza com o banco de dados
     // }),
-    SequelizeModule.forFeature([Users, Vacinas]),
+    SequelizeModule.forFeature([Users, Vacinas, Pets, PetsUsers]),
   ],
-  controllers: [AppController, UsersController, VacinasController],
-  providers: [AppService, UsersService, VacinasService],
+  controllers: [
+    AppController,
+    UsersController,
+    VacinasController,
+    PetsController,
+  ],
+  providers: [
+    AppService,
+    UsersService,
+    VacinasService,
+    PetsService,
+    PetsUsersService,
+  ],
 })
 export class AppModule {}
 //mysql://bb79d3af9866fc:9ce1de37@us-cdbr-east-05.cleardb.net/heroku_e96ad73dc3fc9ca?reconnect=true

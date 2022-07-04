@@ -1,11 +1,11 @@
 import { BelongsToMany, Column, DataType, Model, Table } from 'sequelize-typescript';
-import { Pets } from './pets.model';
 import { PetsUsers } from './petsUsers.model';
+import { Users } from './users.model';
 
 //extender da classe model faz ganhar automaticamente a coluna id
 
 @Table
-export class Users extends Model<Users> {
+export class Pets extends Model<Pets> {
 
   @Column({
     type: DataType.STRING(60),
@@ -17,32 +17,38 @@ export class Users extends Model<Users> {
     type: DataType.STRING(60),
     allowNull: false,
   })
-  email: string;
+  genero: string;
 
   @Column({
     type: DataType.STRING(60),
     allowNull: false,
   })
-  celular: string;
+  sexo: string;
 
   @Column({
     type: DataType.STRING(60),
     allowNull: false,
   })
-  dataNascimento: string;
+  raca: string;
 
   @Column({
     type: DataType.STRING(60),
     allowNull: false,
   })
-  cep: string;
+  idade: string;
 
   @Column({
     type: DataType.STRING(60),
     allowNull: false,
   })
-  password: string;
+  castrado: string;
 
-  @BelongsToMany(() => Pets, () => PetsUsers )
-  pets: Pets[];
+  @Column({
+    type: DataType.STRING(60),
+    allowNull: false,
+  })
+  foto: string;
+
+  @BelongsToMany(() => Users, () => PetsUsers )
+  users: Users[];
 }

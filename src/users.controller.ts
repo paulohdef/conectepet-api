@@ -25,9 +25,19 @@ export class UsersController {
     return this.usersService.obterUm(params.id);
   }
 
+  @Get('tutores/:id')
+  async obterUmPet(@Param('id') params): Promise<Users> {
+    return this.usersService.obterPets(params);
+  }
+
   @Post()
   async criar(@Body() user: Users) {
     this.usersService.criar(user);
+  }
+
+  @Post(':pets')
+  async atribuirPetToUser(@Body() ids: any) {
+    this.usersService.atribuiPetToUser(ids);
   }
 
   @Put()
