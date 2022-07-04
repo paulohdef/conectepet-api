@@ -1,4 +1,10 @@
-import { BelongsToMany, Column, DataType, Model, Table } from 'sequelize-typescript';
+import {
+  BelongsToMany,
+  Column,
+  DataType,
+  Model,
+  Table,
+} from 'sequelize-typescript';
 import { PetsUsers } from './petsUsers.model';
 import { Users } from './users.model';
 
@@ -6,7 +12,6 @@ import { Users } from './users.model';
 
 @Table
 export class Pets extends Model<Pets> {
-
   @Column({
     type: DataType.STRING(60),
     allowNull: false,
@@ -45,10 +50,13 @@ export class Pets extends Model<Pets> {
 
   @Column({
     type: DataType.STRING(60),
-    allowNull: false,
+    allowNull: true,
   })
   foto: string;
 
-  @BelongsToMany(() => Users, () => PetsUsers )
+  @BelongsToMany(
+    () => Users,
+    () => PetsUsers,
+  )
   users: Users[];
 }
