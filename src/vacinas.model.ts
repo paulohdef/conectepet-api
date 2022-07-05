@@ -1,10 +1,17 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import {
+  BelongsToMany,
+  Column,
+  DataType,
+  Model,
+  Table,
+} from 'sequelize-typescript';
+import { Pets } from './pets.model';
+import { VacinasPets } from './vacinasPets.model';
 
 //extender da classe model faz ganhar automaticamente a coluna id
 
 @Table
 export class Vacinas extends Model<Vacinas> {
-
   @Column({
     type: DataType.STRING(60),
     allowNull: false,
@@ -34,4 +41,10 @@ export class Vacinas extends Model<Vacinas> {
     allowNull: false,
   })
   atendeGenero: string;
+
+  @BelongsToMany(
+    () => Pets,
+    () => VacinasPets,
+  )
+  pets: Pets[];
 }

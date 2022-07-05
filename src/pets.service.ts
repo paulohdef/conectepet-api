@@ -2,12 +2,16 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { VirtualTimeScheduler } from 'rxjs';
 import { Pets } from './pets.model';
+import { Vacinas } from './vacinas.model';
+import { VacinasPets } from './vacinasPets.model';
 
 @Injectable()
 export class PetsService {
   constructor(
     @InjectModel(Pets)
     private PetModel: typeof Pets,
+    @InjectModel(VacinasPets)
+    private VacinaPetModel: typeof VacinasPets,
   ) {}
 
   async obterTodos(): Promise<Pets[]> {
@@ -16,6 +20,10 @@ export class PetsService {
 
   async obterUm(id: number): Promise<Pets> {
     return this.PetModel.findByPk(id);
+  }
+
+  async obterVacinas(id: number): Promise<Pets> {
+    return this.PetModel.findByPk(id, { include: [Vacinas] });
   }
 
   async criar(pet: Pets) {
@@ -29,6 +37,9 @@ export class PetsService {
         id: pet.id,
       },
     });
+  }
+  async atribuiVacinaToPet(ids) {
+    return this.VacinaPetModel.create(ids);
   }
 
   async apagar(id: number) {

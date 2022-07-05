@@ -14,6 +14,8 @@ import { UsersService } from './users.service';
 import { VacinasController } from './vacinas.controller';
 import { Vacinas } from './vacinas.model';
 import { VacinasService } from './vacinas.service';
+import { VacinasPets } from './vacinasPets.model';
+import { vacinasPetsService } from './vacinasPets.service';
 
 @Module({
   imports: [
@@ -37,7 +39,7 @@ import { VacinasService } from './vacinas.service';
     //   autoLoadModels: true, //reconhece automaticamente os modelos do projeto (SequelizeModule.forFeature([modelos]))
     //   synchronize: true,    //quando subir a aplicação, importa automaticamente os modulos(em forFeature) e sincroniza com o banco de dados
     // }),
-    SequelizeModule.forFeature([Users, Vacinas, Pets, PetsUsers]),
+    SequelizeModule.forFeature([Users, Vacinas, Pets, PetsUsers, VacinasPets]),
   ],
   controllers: [
     AppController,
@@ -51,6 +53,7 @@ import { VacinasService } from './vacinas.service';
     VacinasService,
     PetsService,
     PetsUsersService,
+    vacinasPetsService,
   ],
 })
 export class AppModule {}

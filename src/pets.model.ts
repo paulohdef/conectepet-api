@@ -7,6 +7,8 @@ import {
 } from 'sequelize-typescript';
 import { PetsUsers } from './petsUsers.model';
 import { Users } from './users.model';
+import { Vacinas } from './vacinas.model';
+import { VacinasPets } from './vacinasPets.model';
 
 //extender da classe model faz ganhar automaticamente a coluna id
 
@@ -59,4 +61,10 @@ export class Pets extends Model<Pets> {
     () => PetsUsers,
   )
   users: Users[];
+
+  @BelongsToMany(
+    () => Vacinas,
+    () => VacinasPets,
+  )
+  vacinas: Vacinas[];
 }

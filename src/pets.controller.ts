@@ -25,9 +25,19 @@ export class PetsController {
     return this.petsService.obterUm(params.id);
   }
 
+  @Get('vacinas/:id')
+  async obterUmPet(@Param('id') params): Promise<Pets> {
+    return this.petsService.obterVacinas(params);
+  }
+
   @Post()
   async criar(@Body() pet: Pets) {
     return this.petsService.criar(pet);
+  }
+
+  @Post(':vacinas')
+  async atribuirVacinaToPet(@Body() ids: any) {
+    this.petsService.atribuiVacinaToPet(ids);
   }
 
   @Put()
