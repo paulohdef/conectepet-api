@@ -16,29 +16,21 @@ import { Vacinas } from './vacinas.model';
 import { VacinasService } from './vacinas.service';
 import { VacinasPets } from './vacinasPets.model';
 import { vacinasPetsService } from './vacinasPets.service';
+import * as dotenv from 'dotenv';
 
+dotenv.config();
 @Module({
   imports: [
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: 'us-cdbr-east-05.cleardb.net',
+      host: process.env.DATABASE_HOST,
       port: 3306,
-      username: 'bb79d3af9866fc',
-      password: '9ce1de37',
-      database: 'heroku_e96ad73dc3fc9ca',
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_DB,
       autoLoadModels: true, //reconhece automaticamente os modelos do projeto (SequelizeModule.forFeature([modelos]))
       synchronize: true, //quando subir a aplicação, importa automaticamente os modulos(em forFeature) e sincroniza com o banco de dados
     }),
-    // SequelizeModule.forRoot({
-    //   dialect: 'mysql',
-    //   host: 'localhost',
-    //   port: 3306,
-    //   username: 'root',
-    //   password: 'bobowna123',
-    //   database: 'users',
-    //   autoLoadModels: true, //reconhece automaticamente os modelos do projeto (SequelizeModule.forFeature([modelos]))
-    //   synchronize: true,    //quando subir a aplicação, importa automaticamente os modulos(em forFeature) e sincroniza com o banco de dados
-    // }),
     SequelizeModule.forFeature([Users, Vacinas, Pets, PetsUsers, VacinasPets]),
   ],
   controllers: [
